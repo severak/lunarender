@@ -11,6 +11,7 @@ function _M.load(fname)
 	local rules = {}
 	local ruleset, err
 	
+	rules.layers = {}
 	rules.symbola_style = 'font-family: symbola; font-size: 18px; text-anchor: middle; fill: black; stroke: none; '
 	
 	setmetatable(env, { __index=_G})
@@ -65,6 +66,10 @@ function _M.load(fname)
 	
 	function env.background(fill)
 		rules.background = fill
+	end
+	
+	function env.layers(L)
+		rules.layers = L
 	end
 	
 	ruleset, err = loadfile(fname, 't', env)
