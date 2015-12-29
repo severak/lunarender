@@ -11,11 +11,7 @@ function _M.load(fname)
 	local rules = {}
 	local ruleset, err
 	
-	env.print = print -- possibility to debug rules
-	
-	-- some common funcs for sandbox
-	env.pairs = pairs
-	env.ipairs = ipairs
+	setmetatable(env, { __index=_G})
 	
 	function env.rule(args)
 		if not args.style then
@@ -51,6 +47,11 @@ function _M.load(fname)
 	function env.callbacks(args)
 		rules.callbacks = args
 	end
+	
+	function env.force_zoom(z)
+		rules.zoom = z
+	end
+	
 	
 	ruleset, err = loadfile(fname, 't', env)
 	

@@ -34,13 +34,18 @@ end
 
 -- renders data to SVG file output_filename using ruleset
 function _M.render(data, ruleset, zoom, output_filename)
+	local id, rule, node, way
+	if ruleset.zoom then
+		zoom = ruleset.zoom
+	end
+	
 	local x,y
 	local fx, fy = proj.wgs84_to_px(data.minlat, data.minlon, zoom)
 	local tx, ty = proj.wgs84_to_px(data.maxlat, data.maxlon, zoom)
 
 	local svg = {[0]='svg', xmlns="http://www.w3.org/2000/svg", width=math.abs(tx-fx)..'px', height=math.abs(ty-fy)..'px' }
 	
-	for _, rule in pairs(ruleset) do
+	for _, rule in ipairs(ruleset) do
 		if rule.type=='node' then
 			for id, node in pairs(data.nodes) do
 				if rule.match(node.tags, zoom) then
