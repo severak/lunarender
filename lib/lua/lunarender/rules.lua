@@ -11,6 +11,8 @@ function _M.load(fname)
 	local rules = {}
 	local ruleset, err
 	
+	rules.symbola_style = ''
+	
 	setmetatable(env, { __index=_G})
 	
 	function env.rule(args)
@@ -33,6 +35,12 @@ function _M.load(fname)
 			args.draw = args.draw or 'circle'
 			if args.draw=='circle' then
 				args.r = args.r or 2
+			end
+			if args.draw=='text' then
+				args.textkey = args.textkey or 'name'
+			end
+			if not (args.draw=='text' or args.draw=='circle') then
+				error 'Invalid drawtype of node.'
 			end
 		elseif args.type=='way' then
 			

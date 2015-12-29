@@ -35,7 +35,11 @@ function _M.write(data)
 		if #data>0 then
 			push(out, '>\n')
 			for k,v in ipairs(data) do
-				node(out, v)
+				if type(v)=='table' then
+					node(out, v)
+				elseif type(v)=='string' then
+					push(out, v)
+				end
 			end
 			push(out, '</')
 			push(out, data[0])

@@ -34,7 +34,7 @@ end
 
 -- renders data to SVG file output_filename using ruleset
 function _M.render(data, ruleset, zoom, output_filename)
-	local id, rule, node, way
+	local id, rule, node, way, textval
 	if ruleset.zoom then
 		zoom = ruleset.zoom
 	end
@@ -54,7 +54,16 @@ function _M.render(data, ruleset, zoom, output_filename)
 			for id, node in pairs(data.nodes) do
 				if rule.match(node.tags, zoom) then
 					x,y = proj.wgs84_to_px(node.lat, node.lon, zoom)
-					push(svg, {[0]='circle', id='n'..id, cx=x-fx, cy=y-ty, r=2, style=rule.style })
+					if rule.draw=='circle' then
+						push(svg, {[0]='circle', id='n'..id, cx=x-fx, cy=y-ty, r=2, style=rule.style })
+					elseif rule.draw=='text' then
+						if type(rule.textkey)=='string' and node.tags[rule.textkey] then
+							textval = node.tags[rule.textkey]
+						end
+						if textval then
+							push(svg, {[0]='text', id='n'..id, x=x-fx, y=y-ty, r=2, style=rule.style,  textval})
+						end
+					end
 				end
 			end
 		elseif rule.type=='way' then
