@@ -10,7 +10,7 @@ local _M = {}
 --
 -- output is one big self-referencing table
 --
-function _M.read(fname)
+function _M.read_osm(fname)
 	local current, data, p
 	data = { nodes = {}, ways = {} } 
 	
