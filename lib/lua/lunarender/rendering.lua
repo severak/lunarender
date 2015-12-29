@@ -63,6 +63,8 @@ function _M.render(data, ruleset, zoom, output_filename)
 						if textval then
 							push(svg, {[0]='text', id='n'..id, x=x-fx, y=y-ty, r=2, style=rule.style,  textval})
 						end
+					elseif rule.draw=='symbola' then
+						push(svg, {[0]='text', id='n'..id, x=x-fx, y=y-ty, r=2, style=rule.style or ruleset.symbola_style, rule.symbol})
 					end
 				end
 			end

@@ -89,15 +89,6 @@ rule{
 	style = 'stroke: brown; fill: none; stroke-dasharray: 2, 2;'
 }
 
--- bus stops 
-rule{
-	type = 'node',
-	match = 'tags.highway and tags.highway=="bus_stop" ',
-	style = 'fill: red;',
-	r = 3
-}
-
-
 -- buildings
 rule{
 	type = 'area',
@@ -105,4 +96,22 @@ rule{
 	style = 'fill: orange'
 }
 
-background('navajowhite')
+-- bus stops 
+rule{
+	type = 'node',
+	match = 'tags.highway and tags.highway=="bus_stop" ',
+	draw = 'symbola',
+	symbol = 'ℌ' -- bus symbol, need to installed symbola font
+}
+
+-- place names
+
+rule{
+	type = 'node',
+	match = 'tags.place',
+	draw = 'text',
+	style = 'text-anchor: middle; fill: black; fill-opacity: 0.5; stroke: none; font-size: 20px; font-family: sans-serif; font-weight: bold; font-style: italic; ',
+}
+
+background('white')
+force_zoom(15)

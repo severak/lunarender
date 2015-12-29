@@ -11,12 +11,12 @@ function _M.load(fname)
 	local rules = {}
 	local ruleset, err
 	
-	rules.symbola_style = ''
+	rules.symbola_style = 'font-family: symbola; font-size: 18px; text-anchor: middle; fill: black; stroke: none; '
 	
 	setmetatable(env, { __index=_G})
 	
 	function env.rule(args)
-		if not args.style then
+		if not args.style and not (args.draw and args.draw=='symbola') then
 			error('Missing style in rule.')
 		end
 		local match_rule
@@ -39,7 +39,10 @@ function _M.load(fname)
 			if args.draw=='text' then
 				args.textkey = args.textkey or 'name'
 			end
-			if not (args.draw=='text' or args.draw=='circle') then
+			if args.draw=='symbola' then
+				args.symbol = args.symbol or error 'Symbol not defined for symbola rule.'
+			end
+			if not (args.draw=='text' or args.draw=='circle' or args.draw=='symbola') then
 				error 'Invalid drawtype of node.'
 			end
 		elseif args.type=='way' then
