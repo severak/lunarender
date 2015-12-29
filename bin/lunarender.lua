@@ -13,7 +13,7 @@ input_filename = arg[1] or error 'missing first argument: input filename!'
 rules_filename = arg[2] or 'rules.default.lua'
 zoom = arg[3] or 15
 
-print 'Lunarender dev version'
+print 'Lunarender v 0.1'
 print '=========='
 print 'by Severak'
 print ''
