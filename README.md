@@ -8,6 +8,8 @@ lua-based OpenStreetMap XML2SVG renderer. Despite its name it is used for render
 
 Download [source package](https://github.com/severak/lunarender/archive/master.zip) and unzip it. Binaries for windows are already included.
 
+Some rules uses [Symbola font](http://zhm.github.io/symbola/), it's better to install it.
+
 ## usage
 
 1. go to [OpenStreetMap](http://www.openstreetmap.org), select some nice place and export it
