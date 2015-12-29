@@ -1,0 +1,40 @@
+type = "x86"
+arch = "Windows"
+author = "Roberto Ierusalimschy, André Carregal, Tomás Guisasola"
+depends = {
+[[lua >= 5.1, < 5.3]],
+[[libexpat >= 2.0]],
+}
+
+desc = "LuaExpat is a SAX (Simple API for XML) XML parser based on the Expat library."
+version = "1.3.0"
+maintainer = "Peter Drahoš"
+files = {
+Runtime = {
+[[lib\lua\lxp.dll]],
+[[lib\lua\lxp\lom.lua]],
+}
+,
+Documentation = {
+[[share\luaexpat\doc\\us\examples.html]],
+[[share\luaexpat\doc\\us\index.html]],
+[[share\luaexpat\doc\\us\license.html]],
+[[share\luaexpat\doc\\us\lom.html]],
+[[share\luaexpat\doc\\us\luaexpat.png]],
+[[share\luaexpat\doc\\us\manual.html]],
+}
+,
+Data = {
+[[share\luaexpat\README]],
+}
+,
+Test = {
+[[share\luaexpat\test\\test-lom.lua]],
+[[share\luaexpat\test\\test.lua]],
+}
+,
+}
+
+license = "MIT/X11"
+name = "luaexpat"
+url = "http://www.keplerproject.org/luaexpat/"

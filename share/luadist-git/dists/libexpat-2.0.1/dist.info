@@ -1,0 +1,40 @@
+type = "x86"
+arch = "Windows"
+author = "James Clark"
+desc = "Expat is a C library for parsing XML."
+name = "libexpat"
+maintainer = "Peter Kapec"
+files = {
+Runtime = {
+[[bin\libexpat.dll]],
+}
+,
+Header = {
+[[include\expat.h]],
+[[include\expat_external.h]],
+}
+,
+Documentation = {
+[[share\libexpat\doc\\expat.png]],
+[[share\libexpat\doc\\reference.html]],
+[[share\libexpat\doc\\style.css]],
+[[share\libexpat\doc\\valid-xhtml10.png]],
+[[share\libexpat\doc\\xmlwf.1]],
+[[share\libexpat\doc\\xmlwf.sgml]],
+}
+,
+Data = {
+[[share\libexpat\COPYING]],
+[[share\libexpat\Changes]],
+[[share\libexpat\README]],
+}
+,
+Library = {
+[[lib\libexpat.dll.a]],
+}
+,
+}
+
+license = "MIT/X Consortium license"
+version = "2.0.1"
+url = "http://www.libexpat.org/"
