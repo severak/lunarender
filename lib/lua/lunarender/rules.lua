@@ -52,6 +52,9 @@ function _M.load(fname)
 		rules.zoom = z
 	end
 	
+	function env.background(fill)
+		rules.background = fill
+	end
 	
 	ruleset, err = loadfile(fname, 't', env)
 	

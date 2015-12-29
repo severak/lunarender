@@ -45,6 +45,10 @@ function _M.render(data, ruleset, zoom, output_filename)
 
 	local svg = {[0]='svg', xmlns="http://www.w3.org/2000/svg", width=math.abs(tx-fx)..'px', height=math.abs(ty-fy)..'px' }
 	
+	if ruleset.background then
+		push(svg, {[0]='rect', width='100%', height='100%', fill=ruleset.background } )
+	end
+	
 	for _, rule in ipairs(ruleset) do
 		if rule.type=='node' then
 			for id, node in pairs(data.nodes) do

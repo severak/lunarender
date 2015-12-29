@@ -104,3 +104,5 @@ rule{
 	match = 'tags.building',
 	style = 'fill: orange'
 }
+
+background('navajowhite')
