@@ -9,6 +9,16 @@ local rendering = require 'lunarender.rendering'
 local input_filename, rules_filename, zoom
 local data, ruleset
 
+local function endswith(String,End)
+   return End=='' or string.sub(String,-string.len(End))==End
+end
+
+function die(msg)
+	io.stderr:write('Fatal error!\n')
+	io.stderr:write(msg..'\n')
+	os.exit()
+end
+
 input_filename = arg[1] or error 'missing first argument: input filename!'
 rules_filename = arg[2] or 'rules.default.lua'
 zoom = arg[3] or 15
@@ -22,7 +32,11 @@ print 'loading rules...'
 ruleset = rules.load(rules_filename)
 
 print 'loading data... (this takes a while)'
-data=reader.read_osm(input_filename)
+if endswith(input_filename, '.osm') then
+	data = reader.read_osm(input_filename)
+elseif endswith(input_filename, '.json') then
+	data = reader.read_overpass(input_filename)
+end
 
 print 'drawing...'
 rendering.render(data, ruleset, zoom, input_filename..'.svg')

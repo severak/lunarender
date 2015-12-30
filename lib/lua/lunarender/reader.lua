@@ -3,6 +3,7 @@
 -- MIT licensed
 
 local lxp = require 'lxp'
+local dkjson = require 'dkjson'
 local push = table.insert
 local _M = {}
 
@@ -62,6 +63,48 @@ function _M.read_osm(fname)
 	end
 	p:parse()               -- finishes the document
 	p:close()               -- closes the parser
+	return data
+end
+
+-- reads overpass-turbo file
+function _M.read_overpass(fname)
+	local fh, content, json
+	local data = {nodes = {}, ways={} }
+	fh = io.open(fname, 'r') or die('File '..fname..' cannot be read.')
+	content = fh:read('*a')
+	fh:close()
+	json = dkjson.decode(content)
+	
+	if not json then
+		die 'Invalid input file.'
+	end
+	
+	if not json.bounds then
+		die 'Missing bounds in Overpass file.'
+	end
+	
+	data.minlon = json.bounds.minlon
+	data.maxlon = json.bounds.maxlon
+	data.minlat = json.bounds.minlat
+	data.maxlat = json.bounds.maxlat
+	
+	for _, node in ipairs(json.elements) do
+		if node.type=='node' then
+			data.nodes[node.id] = { lat=node.lat, lon=node.lon, tags = node.tags or {} }
+		end
+	end
+	
+	for _, way in ipairs(json.elements) do
+		local nodes = {}
+		if way.type=='way' then
+			for _, id in ipairs(way.nodes or {}) do
+				push(nodes, data.nodes[id] or die('Node id'..id..' missing in Overpass file.'))
+			end
+			nodes.tags = way.tags or {}
+			data.ways[way.id] = nodes
+		end
+	end
+	
 	return data
 end
 
