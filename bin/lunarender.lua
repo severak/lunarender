@@ -14,12 +14,13 @@ local function endswith(String,End)
 end
 
 function die(msg)
+	io.stderr:write('\n')
 	io.stderr:write('Fatal error!\n')
 	io.stderr:write(msg..'\n')
 	os.exit()
 end
 
-input_filename = arg[1] or error 'missing first argument: input filename!'
+input_filename = arg[1] or die 'Missing first command line argument: input filename'
 rules_filename = arg[2] or 'rules.default.lua'
 zoom = arg[3] or 15
 
@@ -35,7 +36,9 @@ print 'loading data... (this takes a while)'
 if endswith(input_filename, '.osm') then
 	data = reader.read_osm(input_filename)
 elseif endswith(input_filename, '.json') then
-	data = reader.read_overpass(input_filename)
+	data = reader.read_overpass_json(input_filename)
+else
+	die 'Bad format of input.'
 end
 
 print 'drawing...'

@@ -37,7 +37,7 @@ function _M.read_osm(fname)
 			end
 		elseif el == 'nd' then
 			if current then
-				push(current, data.nodes[ tonumber(attr.ref) ] or error('Missing node id='..attr.ref) )
+				push(current, data.nodes[ tonumber(attr.ref) ] or die('Missing node id='..attr.ref) )
 			end
 		end
 	end
@@ -66,8 +66,8 @@ function _M.read_osm(fname)
 	return data
 end
 
--- reads overpass-turbo file
-function _M.read_overpass(fname)
+-- reads overpass api json output
+function _M.read_overpass_json(fname)
 	local fh, content, json
 	local data = {nodes = {}, ways={} }
 	fh = io.open(fname, 'r') or die('File '..fname..' cannot be read.')
