@@ -83,5 +83,17 @@ rule{
 	style = 'stroke: #333; fill: none',
 }
 
+-- text callback example
+
+rule{
+	type = 'node',
+	match = 'tags.place and tags.name',
+	draw = 'text',
+	style = 'text-anchor: middle; fill: black; stroke: none; font-size: 20px; font-family: sans-serif; font-weight: bold; font-style: italic; ',
+	textkey = function(tags, zoom)
+		return tags.place .. ': ' .. tags.name 
+	end
+}
+
 -- pick randomseed
 math.randomseed(os.time())
