@@ -88,13 +88,16 @@ function _M.read_overpass_json(fname)
 	data.minlat = json.bounds.minlat
 	data.maxlat = json.bounds.maxlat
 	
-	for _, node in ipairs(json.elements) do
+	for _, node in pairs(json.elements) do
 		if node.type=='node' then
-			data.nodes[node.id] = { lat=node.lat, lon=node.lon, tags = node.tags or {} }
+			-- AAAAAAARRRRRGH! seems nodes can be output more times on certain queries
+			if not data.nodes[node.id] then
+				data.nodes[node.id] = { lat=node.lat, lon=node.lon, tags = node.tags or {} }
+			end
 		end
 	end
-	
-	for _, way in ipairs(json.elements) do
+		
+	for _, way in pairs(json.elements) do
 		local nodes = {}
 		if way.type=='way' then
 			for _, id in ipairs(way.nodes or {}) do

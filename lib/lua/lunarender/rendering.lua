@@ -94,6 +94,7 @@ function _M.render(data, ruleset, zoom, output_filename)
 						push(target, {[0]='text', id='n'..id, x=x-fx, y=y-ty, r=2, style=apply_style(rule.style or ruleset.symbola_style, node.tags, zoom), rule.symbol})
 					end
 				end
+				print('id',id, node.tags.name or '?')
 			end
 		elseif rule.type=='way' then
 			for id, way in pairs(data.ways) do
