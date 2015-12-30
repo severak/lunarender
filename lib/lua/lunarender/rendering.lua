@@ -56,6 +56,10 @@ function _M.render(data, ruleset, zoom, output_filename)
 		push(svg, layers[id] )
 	end
 	
+	if ruleset.callbacks and ruleset.callbacks.before then
+		ruleset.callbacks.before(data, svg)
+	end
+	
 	for _, rule in ipairs(ruleset) do
 		target = svg
 		if rule.layer then
@@ -95,7 +99,7 @@ function _M.render(data, ruleset, zoom, output_filename)
 	end
 
 	if ruleset.callbacks and ruleset.callbacks.after then
-		ruleset.callbacks.after(data)
+		ruleset.callbacks.after(data, svg)
 	end
 	
 	local out = io.open(output_filename, 'w+') or error('Error opening output file: '..output_filename)
