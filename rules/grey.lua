@@ -4,6 +4,17 @@
 
 background('#fff')
 
+-- enables/disable buildings (disabled building simplifies map a lot)
+local can_into_buildings  = true
+
+
+-- forest
+rule{
+	type = 'area',
+	match = 'tags.landuse and tags.landuse=="forest" ',
+	style = 'fill: #aaa',
+}
+
 -- water
 rule{
 	type = 'area',
@@ -36,12 +47,15 @@ rule{
 	style = 'fill: none; stroke: #fff; stroke-width: 4'
 }
 
--- forest
-rule{
-	type = 'area',
-	match = 'tags.landuse and tags.landuse=="forest" ',
-	style = 'fill: #aaa',
-}
+-- buildings
+
+if can_into_buildings then
+	rule{
+		type = 'area',
+		match = 'tags.building',
+		style = 'fill: #ddd'
+	}
+end
 
 -- ways
 rule{
