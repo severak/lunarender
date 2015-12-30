@@ -22,7 +22,7 @@ end
 
 input_filename = arg[1] or die 'Missing first command line argument: input filename'
 rules_filename = arg[2] or 'rules/default.lua'
-zoom = arg[3] or 15
+zoom = tonumber(arg[3]) or 15
 
 print 'Lunarender v 0.1'
 print '=========='
