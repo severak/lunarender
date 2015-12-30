@@ -79,7 +79,7 @@ function _M.render(data, ruleset, zoom, output_filename)
 				if rule.match(node.tags, zoom) then
 					x,y = proj.wgs84_to_px(node.lat, node.lon, zoom)
 					if rule.draw=='circle' then
-						push(target, {[0]='circle', id='n'..id, cx=x-fx, cy=y-ty, r=2, style=apply_style(rule.style, node.tags, zoom) })
+						push(target, {[0]='circle', cx=x-fx, cy=y-ty, r=rule.r, style=apply_style(rule.style, node.tags, zoom) })
 					elseif rule.draw=='text' then
 						if type(rule.textkey)=='string' and node.tags[rule.textkey] then
 							textval = node.tags[rule.textkey]
@@ -88,24 +88,23 @@ function _M.render(data, ruleset, zoom, output_filename)
 							textval = rule.textkey(node.tags, zoom)
 						end
 						if textval then
-							push(target, {[0]='text', id='n'..id, x=x-fx, y=y-ty, r=2, style=apply_style(rule.style, node.tags, zoom),  textval})
+							push(target, {[0]='text', x=x-fx, y=y-ty, style=apply_style(rule.style, node.tags, zoom), transform=rule.transform, textval})
 						end
 					elseif rule.draw=='symbola' then
-						push(target, {[0]='text', id='n'..id, x=x-fx, y=y-ty, r=2, style=apply_style(rule.style or ruleset.symbola_style, node.tags, zoom), rule.symbol})
+						push(target, {[0]='text', x=x-fx, y=y-ty, style=apply_style(rule.style or ruleset.symbola_style, node.tags, zoom), rule.symbol})
 					end
 				end
-				print('id',id, node.tags.name or '?')
 			end
 		elseif rule.type=='way' then
 			for id, way in pairs(data.ways) do
 				if not way.closed and rule.match(way.tags, zoom) then
-					push(target, { [0]='path', id='w'..id, d=path_d(way, zoom, fx, ty), style=apply_style(rule.style, way.tags, zoom) } )
+					push(target, { [0]='path', d=path_d(way, zoom, fx, ty), style=apply_style(rule.style, way.tags, zoom) } )
 				end
 			end
 		elseif rule.type=='area' then
 			for id, way in pairs(data.ways) do
 				if way.closed and rule.match(way.tags, zoom) then
-					push(target, { [0]='path', id='w'..id, d=path_d(way, zoom, fx, ty), style=apply_style(rule.style, way.tags, zoom) } )
+					push(target, { [0]='path', d=path_d(way, zoom, fx, ty), style=apply_style(rule.style, way.tags, zoom) } )
 				end
 			end
 		end
