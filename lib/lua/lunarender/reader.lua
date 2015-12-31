@@ -88,7 +88,7 @@ function _M.read_overpass_json(fname)
 	data.minlat = json.bounds.minlat
 	data.maxlat = json.bounds.maxlat
 	
-	for _, node in pairs(json.elements) do
+	for _, node in ipairs(json.elements) do
 		if node.type=='node' then
 			-- AAAAAAARRRRRGH! seems nodes can be output more times on certain queries
 			if not data.nodes[node.id] then
@@ -102,6 +102,10 @@ function _M.read_overpass_json(fname)
 		if way.type=='way' then
 			for _, id in ipairs(way.nodes or {}) do
 				push(nodes, data.nodes[id] or die('Node id'..id..' missing in Overpass file.'))
+			end
+			nodes.closed = false
+			if #way.nodes>1 and way.nodes[1]==way.nodes[#way.nodes] then
+				nodes.closed = true
 			end
 			nodes.tags = way.tags or {}
 			data.ways[way.id] = nodes
