@@ -23,9 +23,9 @@ You can also experinent with other rendering rules.
 
 ### using data from Overpass API
 
-1. go to [Overpass turbo](http://overpass-turbo.eu/) and enter your query. Note: you **have to** include `[out:json]`)  and `[bbox:{{bbox}}]` in your query.
+1. go to [Overpass turbo](http://overpass-turbo.eu/) and enter your query. Note: you **have to** include `[out:json]` and `[bbox:{{bbox}}]` in your query.
 2. export data as *raw data*
-3. drop exported XML file to LunaRender working directory
+3. drop exported JSON file to LunaRender working directory
 4. run `cmdhere.bat` (or add `lunarender.bat` to `PATH`)
 5. call `lunarender export.json` from command line
 
