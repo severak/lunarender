@@ -43,7 +43,7 @@ function _M.read_osm(fname)
 	end
 	
 	local function EndElement(p, el)
-		if el=='way' and current[1]==current[#current] then
+		if el=='way' and (current and #current>1 and current[1]==current[#current]) then
 			current.closed = true
 		end
 		if el=='node' or el=='way' then
