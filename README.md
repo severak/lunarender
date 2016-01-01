@@ -73,7 +73,7 @@ Adds new rule `args`. Rule is lua table with following keys:
 
 Each rule is validated before using.
 
-Entities are drawn in order in which rules was specifies.
+Entities are drawn in order in which rules was specified.
 
 Please take a look at example rules for more info how to use rendering rule syntax.
 
