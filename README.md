@@ -77,6 +77,14 @@ Entities are drawn in order in which rules was specified.
 
 Please take a look at example rules for more info how to use rendering rule syntax.
 
+## todo
+ 
+ - clean documentation
+ - feature detection library (OSM tags are often quite confusing)
+ - relation support (multipolygons!!!)
+ - svg patterns, gradidents and embedded images (for map icons)
+ - coastline workarounds
+
 ## nice to have in future
 
  - path simplification (take a care about zoom, smaller zoom requires more simplification)
@@ -86,10 +94,7 @@ Please take a look at example rules for more info how to use rendering rule synt
  - direct output to png via cairo
  - mapnik-like rendering style
  - some magic to work with layers (on map, not in svg)
- - multipolygons support!!!
- - relation support
  - contributors ;-)
- - svg patterns and gradidents
  - another map projection?
 
 ## acknowledgment
