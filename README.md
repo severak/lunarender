@@ -78,7 +78,8 @@ Entities are drawn in order in which rules was specified.
 Please take a look at example rules for more info how to use rendering rule syntax.
 
 ## todo
- 
+
+ - automatic adding of attribution boxes to rendered images
  - clean documentation
  - feature detection library (OSM tags are often quite confusing)
  - relation support (multipolygons!!!)
