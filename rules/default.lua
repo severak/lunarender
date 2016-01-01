@@ -129,6 +129,16 @@ rule{
 	layer = 'stops'
 }
 
+-- bus stops label
+rule{
+	type = 'node',
+	match = 'tags.highway and tags.highway=="bus_stop" ',
+	style = 'stroke: none; fill: #000; font-family: sans-serif; font-size: 10px;',
+	draw = 'text',
+	transform = 'translate(10 -4)', -- to move label out from symbol
+	layer = 'stops',
+}
+
 -- place names
 
 rule{
