@@ -4,7 +4,7 @@ lua-based OpenStreetMap XML2SVG renderer. Despite its name it is used for render
 
 Useful for ad-hoc rendering, not intended as batch tileset renderer alternative. 
 
-**Work in progress.**
+**Work in progress.** See [demo renderings](http://svita.cz/archiv/imgs/lunarender-demos/) and [my blog posts](https://www.openstreetmap.org/user/Sever%C3%A1k/diary) about it.
 
 ## installation
 
@@ -83,10 +83,11 @@ Please take a look at example rules for more info how to use rendering rule synt
  - feature detection library (OSM tags are often quite confusing)
  - relation support (multipolygons!!!)
  - svg patterns, gradidents and embedded images (for map icons)
- - coastline workarounds
+ - coastline workarounds (they [have solution](http://wiki.openstreetmap.org/wiki/Tiles@home/Dev/Interim_Coastline_Support) probably)
 
 ## nice to have in future
 
+ - tile generating support. [Mapslit](http://wiki.openstreetmap.org/wiki/Mapsplit)?
  - path simplification (take a care about zoom, smaller zoom requires more simplification)
  - text on path (e.g. street names)
  - linux version (or proper LuaDist packaging)
