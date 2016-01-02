@@ -5,6 +5,7 @@
 local reader = require 'lunarender.reader'
 local rules = require 'lunarender.rules'
 local rendering = require 'lunarender.rendering'
+local multipolygon = require 'lunarender.multipolygon'
 
 local input_filename, rules_filename, zoom
 local data, ruleset
@@ -40,6 +41,8 @@ elseif endswith(input_filename, '.json') then
 else
 	die 'Bad format of input.'
 end
+
+data.multipolygons = multipolygon.build_multipolygons(data)
 
 print 'drawing...'
 rendering.render(data, ruleset, zoom, input_filename..'.svg')

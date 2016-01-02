@@ -39,6 +39,14 @@ local function path_d(way, zoom, fx, ty)
 	return table.concat(d)
 end
 
+local function path_multi_d(ways, zoom, fx, ty)
+	local dp = {}
+	for _,way in ipairs(ways) do
+		push(dp, path_d(way, zoom, fx, ty))
+	end
+	return table.concat(dp, ' ')
+end
+
 -- todo: refactor folowing god function
 
 -- renders data to SVG file output_filename using ruleset
@@ -102,6 +110,11 @@ function _M.render(data, ruleset, zoom, output_filename)
 				end
 			end
 		elseif rule.type=='area' then
+			for id, way in pairs(data.multipolygons) do
+				if rule.match(way.tags, zoom) then
+					push(target, { [0]='path', d=path_multi_d(way, zoom, fx, ty), style=apply_style(rule.style, way.tags, zoom) } )
+				end
+			end
 			for id, way in pairs(data.ways) do
 				if way.closed and rule.match(way.tags, zoom) then
 					push(target, { [0]='path', d=path_d(way, zoom, fx, ty), style=apply_style(rule.style, way.tags, zoom) } )
