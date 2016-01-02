@@ -61,7 +61,7 @@ local function build_multi1(relation, data)
 	for _, member in ipairs(relation) do
 		-- accepting all closed polygons
 		-- but also unclosed riverbanks (this is really piggy solution)
-		if data.ways[member.ref] and (is_closed(data.ways[member.ref]) or relation.tags.waterway=='riverbank' or true) then
+		if data.ways[member.ref] and (is_closed(data.ways[member.ref]) or relation.tags.waterway=='riverbank') then
 			local way = data.ways[member.ref]
 			-- if order of the way doesnot adhere svg spec for holes, i am reversing it
 			if member.role=='outer' and not is_clockwise(way) then
