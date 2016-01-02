@@ -10,6 +10,8 @@ Useful for ad-hoc rendering, not intended as batch tileset renderer alternative.
 
 Download [source package](https://github.com/severak/lunarender/archive/master.zip) and unzip it. Binaries for windows are already included.
 
+For installation under linux see [this issue](https://github.com/severak/lunarender/issues/1).
+
 Some rendering rules uses [Symbola font](http://zhm.github.io/symbola/), it's better to install it otherwise you got mojibake.
 
 ## usage
