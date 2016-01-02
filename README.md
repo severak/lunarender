@@ -84,7 +84,7 @@ Please take a look at example rules for more info how to use rendering rule synt
  - automatic adding of attribution boxes to rendered images
  - clean documentation
  - feature detection library (OSM tags are often quite confusing)
- - relation support (multipolygons!!!)
+ - proper multipolygon handling (today, I have only hackish one)
  - svg patterns, gradidents and embedded images (for map icons)
  - coastline workarounds (they [have solution](http://wiki.openstreetmap.org/wiki/Tiles@home/Dev/Interim_Coastline_Support) probably)
 
