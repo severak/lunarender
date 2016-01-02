@@ -13,7 +13,7 @@ local _M = {}
 --
 function _M.read_osm(fname)
 	local current, data, p
-	data = { nodes = {}, ways = {} } 
+	data = { nodes = {}, ways = {}, relations = {} } 
 	
 	local function StartElement(p, el, attr)
 		if el == 'bounds' then
@@ -39,6 +39,15 @@ function _M.read_osm(fname)
 			if current then
 				push(current, data.nodes[ tonumber(attr.ref) ] or die('Missing node id='..attr.ref) )
 			end
+		elseif el=='relation' then
+			if attr.visible then
+				current = { tags={} }
+				data.relations[ tonumber(attr.id) ] = current
+			end
+		elseif el=='member' then
+			if current then
+				push(current, {type=attr.type, ref=tonumber(attr.ref), role=attr.role} )
+			end
 		end
 	end
 	
@@ -63,6 +72,7 @@ function _M.read_osm(fname)
 	end
 	p:parse()               -- finishes the document
 	p:close()               -- closes the parser
+	
 	return data
 end
 
