@@ -261,6 +261,24 @@ rule{
 	style = 'stroke: #888; stroke-width: 4; fill: none',
 	layer = 'topo'
 }
+
+
+rule{
+	type = 'way',
+	match = 'tags.highway and WAY_G2[tags.highway] and not (tags.tunnel or tags.bridge)',
+	style = 'stroke: #888; stroke-width: 5; fill: none',
+	layer = 'topo'
+}
+
+rule{
+	type = 'way',
+	match = 'tags.highway and WAY_G3[tags.highway] and not (tags.tunnel or tags.bridge)',
+	style = 'stroke: #888; stroke-width: 5; fill: none',
+	layer = 'topo'
+}
+
+-- fill
+
 rule{
 	type = 'way',
 	match = 'tags.highway and WAY_G1[tags.highway] and not (tags.tunnel or tags.bridge)',
@@ -271,12 +289,6 @@ rule{
 rule{
 	type = 'way',
 	match = 'tags.highway and WAY_G2[tags.highway] and not (tags.tunnel or tags.bridge)',
-	style = 'stroke: #888; stroke-width: 5; fill: none',
-	layer = 'topo'
-}
-rule{
-	type = 'way',
-	match = 'tags.highway and WAY_G2[tags.highway] and not (tags.tunnel or tags.bridge)',
 	style = 'stroke: #FFCC66; stroke-width: 3; fill: none',
 	layer = 'topo'
 }
@@ -284,15 +296,10 @@ rule{
 rule{
 	type = 'way',
 	match = 'tags.highway and WAY_G3[tags.highway] and not (tags.tunnel or tags.bridge)',
-	style = 'stroke: #888; stroke-width: 5; fill: none',
-	layer = 'topo'
-}
-rule{
-	type = 'way',
-	match = 'tags.highway and WAY_G3[tags.highway] and not (tags.tunnel or tags.bridge)',
 	style = 'stroke: #FF9933; stroke-width: 3; fill: none',
 	layer = 'topo'
 }
+
 
 -- power lines
 
