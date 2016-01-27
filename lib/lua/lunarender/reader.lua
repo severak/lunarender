@@ -22,15 +22,11 @@ function _M.read_osm(fname)
 			data.minlat = attr.minlat
 			data.maxlat = attr.maxlat
 		elseif el == 'node' then
-			if attr.visible then
-				current = { lat=tonumber(attr.lat), lon=tonumber(attr.lon), tags={}}
-				data.nodes[ tonumber(attr.id) ] = current
-			end
+			current = { lat=tonumber(attr.lat), lon=tonumber(attr.lon), tags={}}
+			data.nodes[ tonumber(attr.id) ] = current
 		elseif el == 'way' then
-			if attr.visible then
-				current = { tags={}, closed=false }
-				data.ways[ tonumber(attr.id) ] = current
-			end
+			current = { tags={}, closed=false }
+			data.ways[ tonumber(attr.id) ] = current
 		elseif el =='tag' then
 			if current and current.tags then
 				current.tags[attr.k] = attr.v
