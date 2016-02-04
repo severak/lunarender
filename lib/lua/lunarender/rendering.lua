@@ -15,6 +15,16 @@ local function apply_style(style, tags, zoom)
 	return style
 end
 
+local function apply_class(style, tags, zoom)
+	if type(style)=='nil' then
+		return nil
+	end
+	if type(style)=='function' then
+		return style(tags, zoom)
+	end
+	return style
+end
+
 local function path_d(way, zoom, fx, ty)
 	local x, y
 	local d={}
@@ -106,18 +116,18 @@ function _M.render(data, ruleset, zoom, output_filename)
 		elseif rule.type=='way' then
 			for id, way in pairs(data.ways) do
 				if not way.closed and rule.match(way.tags, zoom) then
-					push(target, { [0]='path', d=path_d(way, zoom, fx, ty), style=apply_style(rule.style, way.tags, zoom) } )
+					push(target, { [0]='path', d=path_d(way, zoom, fx, ty), style=apply_style(rule.style, way.tags, zoom), class=apply_class(rule.class, way.tags, zoom) } )
 				end
 			end
 		elseif rule.type=='area' then
 			for id, way in pairs(data.multipolygons) do
 				if rule.match(way.tags, zoom) then
-					push(target, { [0]='path', d=path_multi_d(way, zoom, fx, ty), style=apply_style(rule.style, way.tags, zoom) } )
+					push(target, { [0]='path', d=path_multi_d(way, zoom, fx, ty), style=apply_style(rule.style, way.tags, zoom), class=apply_class(rule.class, way.tags, zoom) } )
 				end
 			end
 			for id, way in pairs(data.ways) do
 				if way.closed and rule.match(way.tags, zoom) then
-					push(target, { [0]='path', d=path_d(way, zoom, fx, ty), style=apply_style(rule.style, way.tags, zoom) } )
+					push(target, { [0]='path', d=path_d(way, zoom, fx, ty), style=apply_style(rule.style, way.tags, zoom), class=apply_class(rule.class, way.tags, zoom) } )
 				end
 			end
 		end

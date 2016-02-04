@@ -17,7 +17,7 @@ function _M.load(fname)
 	setmetatable(env, { __index=_G})
 	
 	function env.rule(args)
-		if not args.style and not (args.draw and args.draw=='symbola') then
+		if not (args.style or args.class) and not (args.draw and args.draw=='symbola') then
 			die('Missing style in rule.')
 		end
 		local match_rule
