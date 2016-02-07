@@ -1,10 +1,15 @@
 # LunaRender
 
-lua-based OpenStreetMap XML2SVG renderer. Despite its name it is used for rendering of earth surface [mostly](http://opengeofiction.net).
+experimental OpenStreetMap renderer. Despite its name it is used for rendering of earth surface [mostly](http://opengeofiction.net).
 
-Useful for ad-hoc rendering, not intended as batch tileset renderer alternative. 
+**Work in progress.** See [introduction post](https://www.openstreetmap.org/user/Sever%C3%A1k/diary/37673). 
 
-**Work in progress.** See [demo renderings](http://svita.cz/archiv/imgs/lunarender-demos/) and [my blog posts](https://www.openstreetmap.org/user/Sever%C3%A1k/diary) about it.
+## features
+
+- input format: OSM XML, Overpass API JSON output
+- output format: SVG
+- rendering rules scriptable with lua
+- no need for installing Postgres
 
 ## installation
 
@@ -20,8 +25,6 @@ Some rendering rules uses [Symbola font](http://zhm.github.io/symbola/), it's be
 2. drop exported XML file to LunaRender working directory
 3. run `cmdhere.bat` (or add `lunarender.bat` to `PATH`)
 4. call `lunarender map.osm` from command line
-
-You can also experinent with other rendering rules.
 
 ### using data from Overpass API
 
@@ -41,65 +44,7 @@ You can also experinent with other rendering rules.
 
 Rendering rules are written in [lua](http://www.lua.org/manual/5.2/). 
 
-You can use following functions in them:
-
-### `force_zoom(zoom)`
-
-Sets zoom of output to `zoom`. User cannot overirride zoom set by rendering rules.
-
-### `background(fill)`
-
-Sets background color to `fill`.
-
-### `callbacks(args)`
-
-Sets callbacks `args.before` and/or `args.after`. Callbacks have following signature `callback(data, svg)`.
-
-### `layers(L)`
-
-Setups layers (`L` is lua table of layer names).
-
-### `rule(args)`
-
-Adds new rule `args`. Rule is lua table with following keys:
-
- - `type` - type to which entities this rule applies (one of `node`, `way`, `area`)
- - `match` - lua expression as string or callback function for filtering entities. Can use two variables: `tags` (current entity tags lua table) and `zoom`.
- - `style` - target style as string or function callback with signature `style(tags, zoom)`
- - `layer` - target layer
- - `draw` - draw type. Applies only for `node` rule type. One of `circle`, `symbola`, `text`
- - `symbol` - when using symbola drawtype, symbol of entity as string
- - `textkey` - when using text drawtype, name of tag to be rendered (usually `name`)
- - `r` - when using circle draw type, radius of that circle
- - `transform` - when using text drawtype, svg transformation code (for transferring label out of POI)
-
-Each rule is validated before using.
-
-Entities are drawn in order in which rules was specified.
-
-Please take a look at example rules for more info how to use rendering rule syntax.
-
-## todo
-
- - automatic adding of attribution boxes to rendered images
- - clean documentation
- - feature detection library (OSM tags are often quite confusing)
- - proper multipolygon handling (today, I have only hackish one)
- - svg patterns, gradidents and embedded images (for map icons)
- - coastline workarounds (they [have solution](http://wiki.openstreetmap.org/wiki/Tiles@home/Dev/Interim_Coastline_Support) probably)
-
-## nice to have in future
-
- - tile generating support. [Mapslit](http://wiki.openstreetmap.org/wiki/Mapsplit)?
- - path simplification (take a care about zoom, smaller zoom requires more simplification)
- - text on path (e.g. street names)
- - linux version (or proper LuaDist packaging)
- - sandbox in rendering rules
- - direct output to png via cairo
- - mapnik-like rendering style
- - some magic to work with layers (on map, not in svg)
- - contributors ;-)
- - another map projection?
+Currently there is no documentation about rendering rules. You have to look into [source code ](https://github.com/severak/lunarender/tree/master/rules) of demo rules.
 
 ## acknowledgment
 
@@ -111,4 +56,18 @@ Please take a look at example rules for more info how to use rendering rule synt
  - [LuaDist](http://luadist.org/) authors
  - [lua authors](http://www.lua.org/authors.html) for great language
  - and finally all OpenStreetMap contributors for test data
+ 
+## pics or didnt happen
+
+![default style](http://svita.cz/archiv/imgs/lunarender-demos/nymburk.png)
+
+default style
+
+![technology demo](http://svita.cz/archiv/imgs/lunarender-demos/shared.png)
+
+technology demo
+
+![Soviet map style](http://svita.cz/archiv/imgs/lunarender-demos/soviet_luziny.png)
+
+[Soviet map style](https://www.openstreetmap.org/user/Sever%C3%A1k/diary/37681)
  
