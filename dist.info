@@ -1,0 +1,14 @@
+--- This file is part of LuaDist project
+
+name = "lunarender"
+version = "2.0"
+
+desc = "experimental OpenStreetMap renderer"
+author = "Mikoláš Štrajt"
+license = "copyrighted free software"
+url = "https://github.com/severak/lunarender"
+maintainer = "Mikoláš Štrajt"
+
+depends = {
+	"lua ~> 5.1"
+}

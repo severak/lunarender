@@ -1,0 +1,4 @@
+-- todo
+
+print 'object ok'
+
