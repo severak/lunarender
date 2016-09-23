@@ -2,7 +2,7 @@
 
 experimental OpenStreetMap renderer. Despite its name it is used for rendering of earth surface [mostly](http://opengeofiction.net).
 
-**Work in progress.** See [introduction post](https://www.openstreetmap.org/user/Sever%C3%A1k/diary/37673). 
+**Work in progress.** See [introduction post](https://www.openstreetmap.org/user/Severak/diary/37673). 
 
 ## features
 
@@ -69,5 +69,5 @@ technology demo
 
 ![Soviet map style](http://svita.cz/archiv/imgs/lunarender-demos/soviet_luziny.png)
 
-[Soviet map style](https://www.openstreetmap.org/user/Sever%C3%A1k/diary/37681)
+[Soviet map style](https://www.openstreetmap.org/user/Severak/diary/37681)
  
