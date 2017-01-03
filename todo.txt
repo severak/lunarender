@@ -1,0 +1,10 @@
+- přejmenovat delegate na osmtogeojson
+- zdokumentovat na čem závisíme
+- rozchodit obdobu předchozí verze
+
+potom:
+
+- upravit stylovací pravidal (ne rule, ale circle, line, polygon)
+- implementovat vykreslování skrz Cairo
+
+myslím, že je toho víc než dost na práci...
