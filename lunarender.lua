@@ -28,17 +28,17 @@ local function parse_args(args)
 end
 
 local function get_module(name)
-  local ok, ret
-  ok, ret = pcall(require, name)
-  if ok then
-    return ret:new()
-  end
+	local ok, ret
+	ok, ret = pcall(require, name)
+	if ok then
+		return ret:new()
+	end
 end
 
 local function die(msg, heading)
-  io.stderr:write( (heading or 'Error') .. ':\n')
-  io.stderr:write(msg)
-  os.exit(2)
+	io.stderr:write( (heading or 'Error') .. ':\n')
+	io.stderr:write(msg .. "\n")
+	os.exit(2)
 end
 
 local params, reader, writer, ok, errormsg 
@@ -50,12 +50,12 @@ params.writer = params.writer or params.w or die('Missing --writer parameter')
 
 reader = get_module('lunarender.reader.'..params.reader)
 if not reader then
-  die('Unable to load reader "'..params.reader..'"')
+	die('Unable to load reader "'..params.reader..'"')
 end
 
 ok, errormsg = reader:set_params(params)
 if not ok then
-  die(errormsg, 'File reading error')
+	die(errormsg, 'File reading error')
 end
 
 print(pretty.dump(reader:read()))
