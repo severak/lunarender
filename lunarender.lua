@@ -6,25 +6,25 @@
 local pretty = require 'pl.pretty'
 
 local function parse_args(args)
-  local params = {}
-  for _, param in ipairs(args) do
-    local key, val
-    if string.match(param, '^[/-]*[%w_-]+=.+$') then
-      key, val = string.match(param, '^[/-]+([%w_-]+)=(.+)$')
-      if val=='true' then
-        val = true
-      elseif val=='false' then
-        val = 'false'
-      elseif tonumber(val) then
-        val = tonumber(val)
-      end
-      params[key] = val
-    elseif string.match(param, '^[/-]*[%w_-]+$') then
-      key = string.match(param, '^[/-]*([%w_-]+)$')
-      params[key] = true
-    end
-  end
-  return params
+	local params = {}
+	for _, param in ipairs(args) do
+		local key, val
+		if string.match(param, '^[/-]*[%w_-]+=.+$') then
+			key, val = string.match(param, '^[/-]+([%w_-]+)=(.+)$')
+			if val=='true' then
+				val = true
+			elseif val=='false' then
+				val = 'false'
+			elseif tonumber(val) then
+				val = tonumber(val)
+			end
+			params[key] = val
+		elseif string.match(param, '^[/-]*[%w_-]+$') then
+			key = string.match(param, '^[/-]*([%w_-]+)$')
+			params[key] = true
+		end
+	end
+	return params
 end
 
 local function get_module(name)
