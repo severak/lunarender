@@ -4,7 +4,7 @@
 
 potom:
 
-- upravit stylovací pravidal (ne rule, ale circle, line, polygon)
+- upravit stylovací pravidal (ne rule, ale circle, line, polygon, text, symbol)
 - implementovat vykreslování skrz Cairo
 
 myslím, že je toho víc než dost na práci...
