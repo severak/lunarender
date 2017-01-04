@@ -1,10 +1,14 @@
 - přejmenovat delegate na osmtogeojson
 - zdokumentovat na čem závisíme
-- rozchodit obdobu předchozí verze
+- upravit stylovací pravidla (ne rule, ale circle, line, polygon, text, symbol) 
+- balíčkovač (unboxed 🎁🎁🎁) 
+- obdoba předchozí verze #2.0 (znamená první release)
 
-potom:
+v dalších verzích:
 
-- upravit stylovací pravidal (ne rule, ale circle, line, polygon, text, symbol)
-- implementovat vykreslování skrz Cairo
-
-myslím, že je toho víc než dost na práci...
+- vykreslování skrz Cairo
+- vícenásobná čára (např pro útesy)
+- rekurzivní úlohy (generování MBTiles)
+- mapzen reader
+- spatialite reader (pro velké plochy)
+- vykreslovat názvy ulic (text na cestě)
