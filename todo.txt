@@ -1,14 +1,21 @@
 - přejmenovat delegate na osmtogeojson
 - zdokumentovat na čem závisíme
 - upravit stylovací pravidla (ne rule, ale circle, line, polygon, text, symbol) 
-- balíčkovač (unboxed 🎁🎁🎁) 
+- pravidlo zoom={min, max} (+ konstanta ANY)
+- match ve stylech nebude match ale where
+- balíčkovač (unboxing 🎁🎁🎁) 
+- parametry 
+  - natvrdo vstup: osmtogeojson, výstup: svg, projekce: webmerc
+  - výchozí zoom: 15, input: map.osm, output: {input}.{output format}
 - obdoba předchozí verze #2.0 (znamená první release)
 
 v dalších verzích:
 
+- hádání formátu vstupu a výstupu
 - vykreslování skrz Cairo
-- vícenásobná čára (např pro útesy)
+- vícenásobná čára (např pro útesy) (nebo spíš posouvání čáry)
 - rekurzivní úlohy (generování MBTiles)
 - mapzen reader
 - spatialite reader (pro velké plochy)
 - vykreslovat názvy ulic (text na cestě)
+- jinou projekci než webmerc
