@@ -2,7 +2,9 @@
 
 experimental OpenStreetMap renderer. Despite its name it is used for rendering of earth surface [mostly](http://opengeofiction.net).
 
-**Work in progress.** See [introduction post](https://www.openstreetmap.org/user/Severak/diary/37673). 
+~~Work in progress.~~ See [introduction post](https://www.openstreetmap.org/user/Severak/diary/37673). 
+
+**NEW** - I started working on more usable version - [lunarender3](https://github.com/severak/lunarender3) (based on vector tiles).
 
 ## features
 
